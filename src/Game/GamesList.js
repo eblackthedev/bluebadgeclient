@@ -30,7 +30,7 @@ const[games, setGames] = useState([])
     }
     const GameCard=(props) =>{ // will recive props value from parent(gamelist)
         return(<Card >
-            <CardImg top src="data:image alt="Card image cap" />
+            <CardImg top src="data:image alt="Card image />
             <CardBody>
             <CardTitle tag="h5">{props.game.gameName}</CardTitle> 
             <CardSubtitle tag="h6" className="mb-2 text-muted">Maker:{props.game.maker}</CardSubtitle>
@@ -47,20 +47,22 @@ const[games, setGames] = useState([])
         }else{
 
         
-        let gameGridValue= games.map((game, index) =>{
-        
-            return(
-
-            <Col sm="4">
-                <GameCard game={game} index={index} /> {/* we are passing properties to the game card component*/}
-            </Col>
-            
-            )
-        })
+    
         return(
             <Container fluid>
                 <Row>
-                    {gameGridValue}
+                    {
+games.map((game, index) =>{
+        
+    return(
+
+    <Col sm="4">
+        <GameCard game={game} index={index} /> {/* we are passing properties to the game card component*/}
+    </Col>
+    
+    )
+})
+                    }
                 </Row>
             </Container>
         )
