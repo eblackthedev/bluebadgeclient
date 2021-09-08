@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import GameCreate from "./GameCreate";
@@ -9,6 +10,8 @@ const GameIndex = (props) => {
   const [updateActive, setUpdateActive] = useState(false);
   const [gamesToUpdate, setGamesToUpdate] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
+
+
 
   useEffect(() => {
     fetchGames();

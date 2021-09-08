@@ -1,19 +1,21 @@
 import React, {useState, useEffect} from 'react';
-import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import {Button, Form, FormGroup, Label, Input, Container} from 'reactstrap';
 
 const GameCreate = (props) => {
     const [gameName, setGameName] = useState('');
     const [maker, setMaker] = useState('');
     const [info, setInfo] = useState('');
     
+    
     const handleSubmit = (e) => { 
         e.preventDefault();
-        fetch('http://localhost:4000/game/', { 
+        console.log("gameName",gameName,maker,info, props.token )
+        fetch('http://localhost:4000/game/game/', { 
             method: 'POST',
-            body: JSON.stringify({game: {gameName: gameName, maker: maker, info: info}}), 
+            body: JSON.stringify({gameName: gameName, maker: maker, info: info}), 
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': props.token 
+                'Authorization':"Bearer " + props.token 
             })
         }).then((res) => res.json())
         .then((gameData) => { 
@@ -21,37 +23,40 @@ const GameCreate = (props) => {
                 setGameName(''); 
                 setMaker(''); 
                 setInfo('') 
-                props.fetchgames(); 
+              //  props.fetchgames(); 
         })
     }
         
     return(
-        <>
+        <Container>
         <h3>My Games</h3>
         <Form onSubmit={handleSubmit}>
         <FormGroup>
-            <Label htmlFor="gameName"/>
-            <Input name="gameName" value={gameName} onChange={(e) => setGameName(e.target.value)}/> 
-            <option value="newrelease">New Release</option>
+            <Label htmlFor="gameName">Game Name </Label>
+            <Input  name="mygames" value={gameName} onChange={(e) => setGameName(e.target.value)}> 
+            {/*<option value="myFavorite">My Favorite</option>
+            <option value="newCollection">Collections</option>
+    <option value="newrelease">Add More Games</option>*/}
+            </Input>
+
         </FormGroup>
 
         <FormGroup>
-            <Label htmlFor="maker"/>
-            <Input type="select" name="maker" value={info} onChange={(e) => setMaker(e.target.value)}> 
-            <option value="makerName">Game Maker Name</option>
-            <option value="newrelease">New Release</option>
+            <Label htmlFor="maker">Game Maker</Label>
+            <Input name="maker" value={maker} onChange={(e) => setMaker(e.target.value)}> 
+           {/* <option value="makerName">Game Maker</option>
+            <option value="newrelease">New Release</option>*/}
             </Input>
         </FormGroup>
 
         <FormGroup>
-            <Label htmlFor="info"/>
+            <Label htmlFor="info">Add Information</Label>
             <Input name="info" value={info} onChange={(e) => setInfo(e.target.value)} /> 
-
         </FormGroup>
 
         <Button type="submit">Submit</Button> 
         </Form>
-        </>
+        </Container>
     )
 
 }
