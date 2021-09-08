@@ -10,9 +10,6 @@ const[games, setGames] = useState([])
 const[open, setOpen] = useState(false)
 
 
-const GamesList = (props) => {
-        const [games, setGames] = useState([])
-
 
         useEffect(() => {
             fetchGames();
@@ -72,23 +69,23 @@ const GamesList = (props) => {
                 })
         }
 
-        const ExternalGameApi = () => {
-                function gameApi(games) {
-                    gameApi = games.thisweek;
-                    //console.log()
-                    const Api = 
-                    const gameApi = async () => {
-                        const response = await fetch(gameApi)
-                        const json = await response.json()
-                        console.log('game2', json)
+        // const ExternalGameApi = () => {
+        //         function gameApi(games) {
+        //             gameApi = games.thisweek;
+        //             //console.log()
+        //             const Api = 
+        //             const gameApi = async () => {
+        //                 const response = await fetch(gameApi)
+        //                 const json = await response.json()
+        //                 console.log('game2', json)
 
 
                         //     const img = document.createElement('img')
                         //    const body = document.querySelector('body')
                         // img.src = json.url;
                         // body.append(img)
-                    }
-                }}
+                //     }
+                // }}
                     const GameCard = () => { // will recive props value from parent(gamelist)
                         return ( 
                             games.map((game,index) => {
@@ -172,41 +169,5 @@ const GamesList = (props) => {
             //            )
             //        }
 
-
-export default GamesList
-
-const ModalFocusAfterClose = (props) => {
-    const [open, setOpen] = useState(false);
-    const [focusAfterClose, setFocusAfterClose] = useState(true);
-
-    const toggle = () => setOpen(!open);
-    const handleSelectChange = ({target: { value }}) => {
-        setFocusAfterClose(JSON.parse(value));
-    }
-
-    return (
-        <div>
-            <Form inline onSubmit={(e) => e.preventDefault()}>
-                <FormGroup>
-                    <Label for="focusAfterClose">Focus After Close</Label>
-                    <Input className="mx-2" type="select" id="focusAfterClose" onChange={handleSelectChange}>
-                        <option value="true">Yes</option>
-                        <option value="false">No</option>
-                    </Input>
-                </FormGroup>
-                <Button color="danger" onClick={toggle}>Open</Button>
-            </Form>
-            <Modal returnFocusAfterClose={focusAfterClose} isOpen={open}>
-                <ModalBody>
-                    Observe the "Open" button. It will be focused after close when "returnFocusAfterClose" is true and will not be focused if "returnFocusAfterClose" is false.
-                </ModalBody>
-                <ModalFooter>
-                    <Button color="primary" onClick={toggle}>Close</Button>
-                </ModalFooter>
-            </Modal>
-        </div>
-    )
-}
-
-
+        }
 export default GamesList
