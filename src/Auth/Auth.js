@@ -3,6 +3,7 @@ import {Container, Row, Col} from 'reactstrap';
 import Signup from './Signup';
 import Login from './Login';
 
+
 const Auth = (props) => { 
     console.log('Auth props', props)
     return(
