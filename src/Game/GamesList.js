@@ -1,9 +1,13 @@
 import React, {useEffect,useState} from 'react';
 import { Card,CardText, CardSubtitle,Button,CardImg,CardBody,CardTitle, Container, Row, Col } from 'reactstrap';
-import { Button, Modal, ModalBody, ModalFooter, Label, Input, FormGroup, Form } from 'reactstrap';
+import GamesModal from './GamesModal';
 
 
 
+
+const GamesList = (props) =>{
+const[games, setGames] = useState([])
+const[open, setOpen] = useState(false)
 
 
 const GamesList = (props) => {
@@ -33,14 +37,17 @@ const GamesList = (props) => {
             setGames(gameData)
         })
     }
-    const GameCard=(props) =>{ // will recive props value from parent(gamelist)
+
+
+    const GameCard=() =>{ // will recive props value from parent(gamelist)
         return(<Card >
             <CardImg top src="data:image alt="Card image />
             <CardBody>
             <CardTitle tag="h5">{props.game.gameName}</CardTitle> 
             <CardSubtitle tag="h6" className="mb-2 text-muted">Maker:{props.game.maker}</CardSubtitle>
             <CardText>{props.game.info}</CardText>
-            <Button>Button</Button>
+            <Button setOpen={true}>Button</Button>
+            <Button onClick={()=> GamesModal}>review</Button>
             </CardBody>
         </Card>)
     }
@@ -166,6 +173,7 @@ const GamesList = (props) => {
             //        }
 
 
+export default GamesList
 
 const ModalFocusAfterClose = (props) => {
     const [open, setOpen] = useState(false);
