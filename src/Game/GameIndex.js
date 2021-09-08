@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import GameCreate from './GameCreate';
-import GamesList from './GamesList';
-//import GameEdit from './GameEdit';
-
 
 const GameIndex = (props) => {
     const[games, setGames] = useState([]);
     const[updateActive, setUpdateActive] = useState(false);
-    const[gamesToUpdate, setGamesToUpdate] = useState({});
+    const[gameToUpdate, setGamesToUpdate] = useState({});
 
     
     useEffect(() =>{
