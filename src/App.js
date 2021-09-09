@@ -38,10 +38,7 @@ function App() {
   };
 
   return (
-    <div>
-      <Sitebar clickLogout={clearToken} />
-      {protectedViews()}
-
+    <>
      
       
      
@@ -50,8 +47,7 @@ function App() {
       {protectedViews()} 
       </Router>
     <Footer/>
-
-    </div>
+    </>
   );
   //Needs to be where the data is being pulled from
 }
