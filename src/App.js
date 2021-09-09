@@ -34,7 +34,7 @@ const protectedViews = () => {
   
 
   return (
-    <div>
+    <>
      
       
      
@@ -43,7 +43,7 @@ const protectedViews = () => {
       {protectedViews()} 
       </Router>
     <Footer/>
-    </div>
+    </>
   );
 
 }
