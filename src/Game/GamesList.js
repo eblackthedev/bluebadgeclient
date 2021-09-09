@@ -1,3 +1,4 @@
+
 import React, {useEffect, useState} from 'react';
 import {Card, CardText, CardSubtitle, Button, CardImg, CardBody, CardTitle, Container, Row, Col, Label
 } from 'reactstrap';
@@ -5,15 +6,117 @@ import GamesModal from './GamesModal'
 
 
 const GamesList = (props) => {
-        const [games, setGames] = useState([])
-        const [externalGames, setExternalGames] = useState([])
-        const [errorMessage, setErrormessage]= useState('')
+    const [games, setGames] = useState([])
+    const [open, setOpen] = useState(false)
+    const [gameId, setGameId]= useState
+  const [externalGames, setExternalGames] = useState([])
+    const [errorMessage, setErrormessage]= useState('')
 
-        useEffect(() => {
-            fetchGames();
 
-        GamesApi();
+        
+
+
+      
+
+    useEffect(() => {
+        fetchGames();
+    }, []) 
+  GamesApi();
         }, [])
+
+    const fetchGames = () => {
+        fetch('http://localhost:4000/game/all', {
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${props.token}`
+            })
+        }).then((res) => res.json())
+            .then((gameData) => {
+                console.log('games', gameData)
+                setGames(gameData)
+            })
+    }
+
+
+ 
+
+
+    // const ExternalGameApi = () => {
+    //         function gameApi(games) {
+    //             gameApi = games.thisweek;
+    //             //console.log()
+    //             const Api = 
+    //             const gameApi = async () => {
+    //                 const response = await fetch(gameApi)
+    //                 const json = await response.json()
+    //                 console.log('game2', json)
+
+
+    //     const img = document.createElement('img')
+    //    const body = document.querySelector('body')
+    // img.src = json.url;
+    // body.append(img)
+    //     }
+    // }}
+    const GameCard = () => { // will recive props value from parent(gamelist)
+        return (
+            games.map((game, index) => {
+       setGameId(game.id)
+                return (
+                    <div>
+
+                        <p>{game.gameName}</p>
+
+                        <Card key={index} className="mb-3" >
+                            <CardImg top src="" alt="Card image cap" />
+
+                            <CardBody >
+                                <CardTitle tag="h5" > game name: {
+                                    game.gameName
+                                }
+                                </CardTitle>
+
+                                <CardSubtitle tag="h6"
+                                    className="mb-2 text-muted" > Maker: {
+                                        game.maker
+                                    } </CardSubtitle>
+                                <CardText > information {
+                                    game.info
+                                } </CardText>
+                                <CardText> review:
+                                    {game.review}
+                                </CardText>
+                                <CardText> rating:
+                                    {game.rating}
+                                </CardText>
+
+                                
+
+
+                                <GamesModal gameId={gameId} fetchgames={fetchGames}/>
+                            </CardBody>
+                        </Card>
+                    </div>
+                )
+            })
+        )
+    }
+    //const[GameName, GameInformation,GameMaker]
+    //games.map(game, index) =>{
+    console.log('games2', games)
+    return (
+        <div>
+            {games.length === 0 ? <div>Loading...</div> :
+                <div>
+                    <GameCard />
+                </div>}
+        </div>
+    )
+
+
+}
+
 
         const deleteGame=(game) => {
         
@@ -173,5 +276,6 @@ const GamesList = (props) => {
             //        }
 
         //}
+
 export default GamesList
 
