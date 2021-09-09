@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import {Route,Switch} from"react-router-dom"
@@ -12,9 +14,9 @@ const Home = (props) => {
         <div>
     
         <Switch>
-            <Route exact path='/home'><GamesList/></Route>
-            <Route exact path='/create'><GameCreate token={props.token}/></Route>
-            <Route exact path='/'><GamesList/></Route>
+            <Route exact path='/home'><GamesList token={props.token} /></Route>
+            <Route exact path='/create'><GameCreate /></Route>
+            <Route exact path='/'><GamesList token={props.token}/></Route>
         </Switch>
     
         </div>
@@ -22,3 +24,4 @@ const Home = (props) => {
 }
 
 export default Home;
+

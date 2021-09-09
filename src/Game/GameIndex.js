@@ -1,11 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Row, Col } from 'reactstrap';
 
-const GameIndex = (props) => {
+import React, { useEffect, useState } from "react";
+import { Container, Row, Col } from "reactstrap";
+import GameCreate from "./GameCreate";
+import GamesList from "./GamesList";
+import GameEdit from "./GameEdit";
+
+
+
+const GamesIndex = (props) => {
     const[games, setGames] = useState([]);
     const[updateActive, setUpdateActive] = useState(false);
     const[gameToUpdate, setGamesToUpdate] = useState({});
-
+    const [searchTerm, setSearchTerm] = useState("");
     
     useEffect(() =>{
         fetchGames();
@@ -20,7 +26,7 @@ const GameIndex = (props) => {
                 })
             }).then((res) => res.json())
             .then((gameData) => {
-                setGames(gameData)
+                setGame(gameData)
                 console.log('game', gameData)
             })
     }
@@ -37,23 +43,44 @@ const GameIndex = (props) => {
     const updateOff = () => {
         setUpdateActive(false);
     }
+    const searchHandler = (searchTerm) => {
+        if (searchTerm.length > 0) {
+          return game.filter(
+            (game) =>
+              game.gameName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
+          );
+        } else {
+            return game;
+        }
+    }
+                return (
             
-    return(
-        
-        <Container> 
-            <Row>
-                <Col md="3"> 
-                    <GameCreate fetchGames={fetchGames} token={props.token}/>
-                </Col> 
-                <Col md="9"> 
-                <GameTable games={games} editUpdateGames={editUpdateGame} updateOn={updateOn}
-                fetchGames={fetchGames} token={props.token}/>
-                </Col> 
-                {updateActive ? <GameEdit gameToUpdate={gameToUpdate}    
-                updateOff={updateOff} token={props.token} fetchGames={fetchGames}/> : <></>}
+                <Container> 
 
-            </Row> 
-        </Container>     
-    )
+                <Row>
+                    <input
+                    type="text"
+                    placeholder="Search Games"
+                    className="prompt"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                </Row>
+
+                    <Row>
+                        <Col md="3"> 
+                            <GameCreate fetchGame={fetchGame} token={props.token}/>
+                        </Col> 
+                        <Col md="9"> 
+                        <GameTable game={game} editUpdateGame={editUpdateGame} updateOn={updateOn}
+                        fetchGame={fetchGame} token={props.token}/>
+                        </Col> 
+                        {updateActive ? <GameEdit gameToUpdate={gameToUpdate}    
+                        updateOff={updateOff} token={props.token} fetchGame={fetchGame}/> : <></>}
+
+                    </Row> 
+                </Container>     
+            )
+        
 }
-export default Index;
+export default GameIndex

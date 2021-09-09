@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Navbar, NavbarBrand, Nav, NavItem, Collapse, NavbarToggler,Button} from 'reactstrap';
+import { Navbar, NavbarBrand, Nav, NavItem, NavbarText, NavLink,Collapse, NavbarToggler,Button} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Link } from 'react-router-dom';
 
@@ -14,31 +14,31 @@ const toggle = () => {
 
     return (<>
         <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">Games</NavbarBrand>
+        <NavbarBrand href="/">Bluebadge</NavbarBrand>
         <NavbarToggler onClick={toggle}/>
-        <Collapse isOpen={isOpen} navbar>
-            <Nav className="ml-auto" navbar>
+        <Collapse isOpen={isOpen} navbar className="justify-content-end">
+            <Nav className="mr-auto " navbar   >
          
             <NavItem class="navgame">
-            <Button><Link to='/home'>Games</Link></Button>
+            <NavLink href='/home'>Games</NavLink>
             </NavItem>
         
 
             <NavItem class="navaddgame">
-            <Button> <Link to='/create'>Add Games</Link></Button>
+            <NavLink href='/create'>Add Games</NavLink>
             </NavItem>
 
             <NavItem class="navmyprofile">
-            <Button> <Link to='/home'>My Profile</Link></Button>
+           <NavLink href='/home'>My Profile</NavLink>
             </NavItem>
             
-            <NavItem class="navlogout">
-            <Button onClick={props.clickLogout}>Logout</Button>
-
-            </NavItem>
+            
            
 
             </Nav>
+            
+            <Button style={{marginRight:10}} onClick={props.clickLogout}>Logout</Button>
+          
             </Collapse>
             </Navbar>
             

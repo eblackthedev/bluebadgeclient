@@ -8,7 +8,9 @@ const GamesModal = (props) => {
     const [rating, setRating] = useState('');
     const [review, setReview] = useState('');
 
-    const toggle = () => setOpen(!open);
+    const toggle = () => {
+        setOpen(!open);
+    }
     const handleSelectChange = ({ target: { value } }) => {
         setFocusAfterClose(JSON.parse(value));
     }
@@ -61,6 +63,7 @@ const GamesModal = (props) => {
     )
 
 
+
 }
 
-export default GamesModal;
+export default GamesModal
