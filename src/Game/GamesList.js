@@ -141,7 +141,7 @@ const GamesList = (props) => {
                             </div>
                         )   
                 }              
-                export default GamesList
+                
 
 
             //     {if (games.length === 0) {
@@ -171,3 +171,7 @@ const GamesList = (props) => {
             //                </Container>
             //            )
             //        }
+
+        //}
+export default GamesList
+

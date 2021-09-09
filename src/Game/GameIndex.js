@@ -1,5 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+
+import React, { useEffect, useState } from "react";
+import { Container, Row, Col } from "reactstrap";
+import GameCreate from "./GameCreate";
+import GamesList from "./GamesList";
+import GameEdit from "./GameEdit";
 
 
 
